@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mấy Câu Hỏi Vu Vơ</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0e5ff;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+            animation: fadeIn 1s;
+        }
+        h1 {
+            color: #ff69b4;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .question {
+            margin: 20px 0;
+            border: 2px solid #ff69b4;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .question:hover {
+            transform: scale(1.02);
+        }
+        .answer {
+            margin: 10px 0;
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #ff69b4;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus {
+            border-color: #ff1493;
+            outline: none;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        button:hover {
+            background-color: #ff1493;
+            transform: scale(1.05);
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Mấy Câu Hỏi Vu Vơ</h1>
+
+    <div id="question1" class="question">
+        <p>Câu 1: Em có người yêu chưa?</p>
+        <div class="answer">
+            <button onclick="showQuestion2('A')">A. Rồi</button>
+            <button onclick="showQuestion2('B')">B. Chưa</button>
+        </div>
+    </div>
+
+    <div id="question2" class="question" style="display:none;">
+        <p>Câu 2: Người yêu em tên gì?</p>
+        <input type="text" id="loverName" placeholder="Nhập tên người yêu của em">
+        <button onclick="showQuestion3()">Tiếp tục</button>
+    </div>
+
+    <div id="question3" class="question" style="display:none;">
+        <p>Câu 3: Em có yêu người yêu của em không?</p>
+        <div class="answer">
+            <button onclick="showQuestion4('Có')">A. Có</button>
+            <button onclick="showQuestion4('Rất có')">B. Rất có</button>
+        </div>
+    </div>
+
+    <div id="question4" class="question" style="display:none;">
+        <p>Câu 4: Em yêu người yêu của em thì hãy nhắn gửi đến người đó gì đi:</p>
+        <input type="text" id="message" placeholder="Nhắn gửi của em">
+        <button onclick="submitSurvey()">Gửi</button>
+    </div>
+
+    <div id="result" class="question" style="display:none;">
+        <h2>Cảm ơn bạn đã tham gia khảo sát!</h2>
+        <p id="finalMessage"></p>
+        <p id="answers"></p>
+        <p><strong>NQ yêu em</strong></p>
+    </div>
+
+    <script>
+        let answer1 = '';
